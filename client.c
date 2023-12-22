@@ -50,18 +50,17 @@ int main(int argc, char *argv[])
     while(1)
     {
         printf("please input messgae: ");
-	scanf("%s", sendBuff);
+	    scanf("%s", sendBuff);
         printf("send: %s\n", sendBuff);
-	send(sockfd, sendBuff, strlen(sendBuff), 0);
+	    send(sockfd, sendBuff, strlen(sendBuff), 0);
         n = read(sockfd, recvBuff, sizeof(recvBuff)-1);
-	if(n < 0)
-    	{
+        if(n <= 0)
+        {
             printf("\n Read error \n");
-            close(sockfd);
-	    break;
+	        break;
     	} 
 	    recvBuff[n] = 0;
-        printf("recv: %s\n", recvBuff);
+        printf("recv: %d bytes %s\n", n, recvBuff);
     }
     close(sockfd);
     return 0;
